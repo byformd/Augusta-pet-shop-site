@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Augusta Pet Shop — Rua Augusta, 436</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#26221d;
+    --cream:#faf3e6;
+    --cream-2:#f1e7d4;
+    --orange:#e8792c;
+    --orange-deep:#c95f1c;
+    --slate:#4f6577;
+    --slate-deep:#374857;
+    --white:#fffdf9;
+    --line: rgba(38,34,29,0.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Karla', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    line-height:1.08;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    font-size:0.72rem;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,243,230,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 28px;max-width:1080px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand img{width:46px;height:46px;border-radius:50%;}
+  .brand span{font-family:'Baloo 2';font-weight:700;font-size:1.15rem;color:var(--slate-deep);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--orange);color:var(--white);
+    padding:11px 20px;border-radius:100px;
+    font-family:'Baloo 2';font-weight:600;font-size:0.95rem;
+    border:none;cursor:pointer;transition:transform .15s ease, background .15s ease;
+    box-shadow:0 4px 0 var(--orange-deep);
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--orange-deep);}
+  .btn-outline{
+    background:transparent;color:var(--slate-deep);
+    border:2px solid var(--slate-deep);box-shadow:none;
+  }
+  .btn svg{width:18px;height:18px;flex-shrink:0;}
+
+  /* ---------- paw trail divider ---------- */
+  .paw-trail{
+    position:relative;height:64px;max-width:1080px;margin:0 auto;
+  }
+  .paw-trail svg{position:absolute;opacity:0.55;}
+
+  /* ---------- hero ---------- */
+  .hero{padding:64px 0 40px;}
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:48px;align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    color:var(--orange-deep);margin-bottom:18px;
+  }
+  .eyebrow::before{content:"🐾";}
+  .hero h1{font-size:2.85rem;color:var(--slate-deep);margin-bottom:18px;}
+  .hero h1 em{color:var(--orange);font-style:normal;}
+  .hero p.lead{font-size:1.1rem;max-width:46ch;margin-bottom:28px;color:#4a4238;}
+  .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px;}
+  .rating{
+    display:flex;align-items:center;gap:10px;margin-top:26px;
+    font-family:'Baloo 2';font-weight:600;color:var(--slate-deep);
+  }
+  .rating .stars{color:var(--orange);letter-spacing:2px;}
+  .rating small{display:block;font-family:'Karla';font-weight:400;color:#7a7062;font-size:0.85rem;}
+
+  .hero-photo{
+    position:relative;
+  }
+  .hero-photo .frame{
+    position:relative;border-radius:22px;overflow:hidden;
+    transform:rotate(2deg);
+    box-shadow:0 18px 40px rgba(38,34,29,0.22);
+    border:6px solid var(--white);
+  }
+  .hero-photo img{width:100%;height:380px;object-fit:cover;}
+  .hero-photo .badge{
+    position:absolute;bottom:-18px;left:-18px;
+    background:var(--slate-deep);color:var(--white);
+    padding:14px 18px;border-radius:14px;
+    transform:rotate(-4deg);
+    font-family:'Baloo 2';font-weight:600;font-size:0.95rem;
+    box-shadow:0 10px 24px rgba(38,34,29,0.25);
+  }
+
+  /* ---------- sections shared ---------- */
+  section{padding:56px 0;}
+  .section-head{max-width:56ch;margin-bottom:36px;}
+  .section-head .mono{color:var(--orange-deep);display:block;margin-bottom:10px;}
+  .section-head h2{font-size:2rem;color:var(--slate-deep);}
+
+  /* ---------- services ---------- */
+  .services{background:var(--cream-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .service-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+  }
+  .service-card{
+    background:var(--white);border-radius:18px;padding:26px 22px;
+    border:1px solid var(--line);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .service-card:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(38,34,29,0.1);}
+  .service-card .icon{font-size:1.8rem;margin-bottom:14px;display:block;}
+  .service-card h3{font-size:1.05rem;color:var(--slate-deep);margin-bottom:6px;}
+  .service-card p{font-size:0.9rem;color:#6b6154;}
+
+  /* ---------- differentials ---------- */
+  .diff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .diff-item{text-align:left;}
+  .diff-item .num{
+    font-family:'IBM Plex Mono';font-size:0.75rem;color:var(--orange);
+    display:block;margin-bottom:8px;
+  }
+  .diff-item h3{font-size:1.05rem;color:var(--slate-deep);margin-bottom:6px;}
+  .diff-item p{font-size:0.9rem;color:#6b6154;}
+
+  /* ---------- reviews ---------- */
+  .reviews{background:var(--slate-deep);color:var(--cream);}
+  .reviews .section-head .mono{color:var(--orange);}
+  .reviews .section-head h2{color:var(--white);}
+  .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .review-card{
+    background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);
+    border-radius:18px;padding:24px;
+  }
+  .review-card .stars{color:var(--orange);letter-spacing:2px;margin-bottom:12px;display:block;}
+  .review-card p{font-size:0.95rem;color:#e7e2d6;margin-bottom:14px;}
+  .review-card .who{font-family:'Baloo 2';font-weight:600;font-size:0.9rem;color:var(--white);}
+
+  /* ---------- location ---------- */
+  .location-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;
+  }
+  .info-list{list-style:none;margin-top:20px;}
+  .info-list li{
+    display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);
+  }
+  .info-list li:last-child{border-bottom:none;}
+  .info-list .ico{font-size:1.2rem;}
+  .info-list h4{font-family:'Baloo 2';font-size:0.95rem;color:var(--slate-deep);margin-bottom:2px;}
+  .info-list p{font-size:0.9rem;color:#6b6154;}
+  .map-card{
+    background:var(--slate-deep);border-radius:20px;padding:32px;color:var(--cream);
+    position:relative;overflow:hidden;
+  }
+  .map-card h3{color:var(--white);font-size:1.3rem;margin-bottom:10px;}
+  .map-card p{color:#cfd8de;margin-bottom:22px;font-size:0.95rem;}
+
+  /* ---------- footer cta ---------- */
+  .footer-cta{
+    background:var(--orange);color:var(--white);text-align:center;
+  }
+  .footer-cta h2{font-size:2.1rem;margin-bottom:14px;}
+  .footer-cta p{max-width:46ch;margin:0 auto 28px;opacity:0.95;}
+  .footer-cta .btn{background:var(--white);color:var(--orange-deep);box-shadow:0 4px 0 rgba(0,0,0,0.15);}
+
+  footer{
+    background:var(--ink);color:#bfb6a5;padding:30px 0;
+    font-size:0.85rem;
+  }
+  .footer-inner{
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+  }
+  .footer-inner a{color:var(--orange);}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-photo{order:-1;}
+    .service-grid{grid-template-columns:repeat(2,1fr);}
+    .diff-grid{grid-template-columns:repeat(2,1fr);}
+    .review-grid{grid-template-columns:1fr;}
+    .location-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:2.1rem;}
+  }
+  @media(max-width:480px){
+    .service-grid{grid-template-columns:1fr;}
+    .diff-grid{grid-template-columns:1fr;}
+    .header-inner .btn span{display:none;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+  }
+
+  :focus-visible{outline:3px solid var(--orange-deep);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <img src="logo.png" alt="Logo Augusta Pet Shop">
+      <span>Augusta Pet Shop</span>
+    </div>
+    <a class="btn" href="https://wa.me/5511976888191?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio%20para%20meu%20pet%20%F0%9F%90%BE" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5C11.4 9 11 8 10.8 7.6c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.2L2 22l4.9-1.3c1.5.8 3.3 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.5.9.9-3.4-.2-.3C3.5 14.6 3 13.3 3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9z"/></svg>
+      <span>Chamar no WhatsApp</span>
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow mono">Rua Augusta, 436 · Consolação, São Paulo</span>
+      <h1>A petshop que tem <em>escadinha</em>, pertinho do Parque Augusta.</h1>
+      <p class="lead">Banho e tosa com carinho de verdade, consultório veterinário e produtos naturais para cães e gatos. Agenda o horário do seu bichinho direto pelo WhatsApp.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://wa.me/5511976888191?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20banho%20e%20tosa%20%F0%9F%90%B6" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5C11.4 9 11 8 10.8 7.6c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.2L2 22l4.9-1.3c1.5.8 3.3 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.5.9.9-3.4-.2-.3C3.5 14.6 3 13.3 3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9z"/></svg>
+          <span>Agendar banho e tosa</span>
+        </a>
+        <a class="btn btn-outline" href="tel:+551135426372">(11) 3542-6372</a>
+      </div>
+      <div class="rating">
+        <span class="stars">★★★★★</span>
+        <span>4,8 <small>179 avaliações no Google</small></span>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="frame">
+        <img src="fachada.jpg" alt="Fachada do Augusta Pet Shop na Rua Augusta">
+      </div>
+      <div class="badge">🏳️‍🌈 Espaço acolhedor · gerido por mulheres</div>
+    </div>
+  </div>
+</section>
+
+<div class="paw-trail" aria-hidden="true">
+  <svg width="34" height="34" viewBox="0 0 34 34" style="left:8%;top:6px;transform:rotate(-8deg);" fill="#e8792c"><ellipse cx="17" cy="22" rx="9" ry="7"/><ellipse cx="7" cy="10" rx="3.4" ry="4.2"/><ellipse cx="15" cy="5" rx="3.4" ry="4.2"/><ellipse cx="23" cy="6" rx="3.4" ry="4.2"/><ellipse cx="29" cy="13" rx="3" ry="4"/></svg>
+  <svg width="30" height="30" viewBox="0 0 34 34" style="left:22%;top:26px;transform:rotate(10deg);" fill="#e8792c"><ellipse cx="17" cy="22" rx="9" ry="7"/><ellipse cx="7" cy="10" rx="3.4" ry="4.2"/><ellipse cx="15" cy="5" rx="3.4" ry="4.2"/><ellipse cx="23" cy="6" rx="3.4" ry="4.2"/><ellipse cx="29" cy="13" rx="3" ry="4"/></svg>
+  <svg width="34" height="34" viewBox="0 0 34 34" style="left:37%;top:2px;transform:rotate(-14deg);" fill="#e8792c"><ellipse cx="17" cy="22" rx="9" ry="7"/><ellipse cx="7" cy="10" rx="3.4" ry="4.2"/><ellipse cx="15" cy="5" rx="3.4" ry="4.2"/><ellipse cx="23" cy="6" rx="3.4" ry="4.2"/><ellipse cx="29" cy="13" rx="3" ry="4"/></svg>
+  <svg width="28" height="28" viewBox="0 0 34 34" style="left:52%;top:24px;transform:rotate(6deg);" fill="#e8792c"><ellipse cx="17" cy="22" rx="9" ry="7"/><ellipse cx="7" cy="10" rx="3.4" ry="4.2"/><ellipse cx="15" cy="5" rx="3.4" ry="4.2"/><ellipse cx="23" cy="6" rx="3.4" ry="4.2"/><ellipse cx="29" cy="13" rx="3" ry="4"/></svg>
+  <svg width="34" height="34" viewBox="0 0 34 34" style="left:67%;top:4px;transform:rotate(-4deg);" fill="#e8792c"><ellipse cx="17" cy="22" rx="9" ry="7"/><ellipse cx="7" cy="10" rx="3.4" ry="4.2"/><ellipse cx="15" cy="5" rx="3.4" ry="4.2"/><ellipse cx="23" cy="6" rx="3.4" ry="4.2"/><ellipse cx="29" cy="13" rx="3" ry="4"/></svg>
+  <svg width="30" height="30" viewBox="0 0 34 34" style="left:82%;top:22px;transform:rotate(12deg);" fill="#e8792c"><ellipse cx="17" cy="22" rx="9" ry="7"/><ellipse cx="7" cy="10" rx="3.4" ry="4.2"/><ellipse cx="15" cy="5" rx="3.4" ry="4.2"/><ellipse cx="23" cy="6" rx="3.4" ry="4.2"/><ellipse cx="29" cy="13" rx="3" ry="4"/></svg>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="servicos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">O que fazemos</span>
+      <h2>Serviços</h2>
+    </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <span class="icon">🛁</span>
+        <h3>Banho e Tosa</h3>
+        <p>Produtos suaves, tosas na tesoura ou na máquina, do jeitinho que o seu pet gosta.</p>
+      </div>
+      <div class="service-card">
+        <span class="icon">🩺</span>
+        <h3>Consultório Veterinário</h3>
+        <p>Consultas e acompanhamento de rotina para cães e gatos, com hora marcada.</p>
+      </div>
+      <div class="service-card">
+        <span class="icon">🌿</span>
+        <h3>Produtos Naturais</h3>
+        <p>Ração e itens sem conservantes para cães e gatos de todas as idades.</p>
+      </div>
+      <div class="service-card">
+        <span class="icon">🎾</span>
+        <h3>Acessórios</h3>
+        <p>Coleiras, brinquedos e tudo o que falta para o dia a dia do seu bichinho.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIALS -->
+<section id="diferenciais">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Por que a Augusta</span>
+      <h2>Diferenciais</h2>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-item">
+        <span class="num">01</span>
+        <h3>Entrega e retirada</h3>
+        <p>Peça pelo WhatsApp e a gente leva até você, ou retire na loja.</p>
+      </div>
+      <div class="diff-item">
+        <span class="num">02</span>
+        <h3>Agendamento fácil</h3>
+        <p>Marque o horário do seu pet direto na conversa, sem burocracia.</p>
+      </div>
+      <div class="diff-item">
+        <span class="num">03</span>
+        <h3>Espaço acolhedor</h3>
+        <p>Empresa LGBTQ+ friendly, gerida por mulheres, no coração da Augusta.</p>
+      </div>
+      <div class="diff-item">
+        <span class="num">04</span>
+        <h3>Wi-Fi e conforto</h3>
+        <p>Enquanto seu pet toma banho, fique à vontade com Wi-Fi gratuito.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Quem já veio</span>
+      <h2>Avaliações</h2>
+    </div>
+    <div class="review-grid">
+      <div class="review-card">
+        <span class="stars">★★★★★</span>
+        <p>Cliente elogiou o cuidado no atendimento e disse que o banho e a tosa saíram impecáveis.</p>
+        <span class="who">Leticia V.</span>
+      </div>
+      <div class="review-card">
+        <span class="stars">★★★★★</span>
+        <p>Dona de pet contou que leva a cachorra sempre para o banho e para comprar os produtos da loja.</p>
+        <span class="who">Ana D.</span>
+      </div>
+      <div class="review-card">
+        <span class="stars">★★★★★</span>
+        <p>Tutora destacou a atenção e o profissionalismo da equipe durante o banho do seu pet.</p>
+        <span class="who">Karina M.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="local">
+  <div class="wrap location-grid">
+    <div>
+      <div class="section-head" style="margin-bottom:8px;">
+        <span class="mono">Como chegar</span>
+        <h2>Localização e horário</h2>
+      </div>
+      <ul class="info-list">
+        <li>
+          <span class="ico">📍</span>
+          <div><h4>Endereço</h4><p>Rua Augusta, 436 — Consolação, São Paulo - SP, 01304-000</p></div>
+        </li>
+        <li>
+          <span class="ico">🕗</span>
+          <div><h4>Horário</h4><p>Segunda a sábado, a partir das 08:00 (confirme o horário de fechamento pelo WhatsApp)</p></div>
+        </li>
+        <li>
+          <span class="ico">📞</span>
+          <div><h4>Telefone</h4><p>(11) 3542-6372 / (11) 3542-6373</p></div>
+        </li>
+        <li>
+          <span class="ico">🅿️</span>
+          <div><h4>Estacionamento</h4><p>Estacionamento coberto pago e opções gratuitas na rua</p></div>
+        </li>
+      </ul>
+    </div>
+    <div class="map-card">
+      <h3>Vem tomar um banho aqui 🐾</h3>
+      <p>A gente responde rapidinho pelo WhatsApp — chama pra agendar, tirar dúvida ou fazer um pedido.</p>
+      <a class="btn" href="https://wa.me/5511976888191?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Augusta%20Pet%20Shop" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5C11.4 9 11 8 10.8 7.6c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.2L2 22l4.9-1.3c1.5.8 3.3 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.5.9.9-3.4-.2-.3C3.5 14.6 3 13.3 3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9z"/></svg>
+        <span>Falar no WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta">
+  <div class="wrap">
+    <h2>Seu pet merece um banho de carinho.</h2>
+    <p>Chama a gente agora no WhatsApp e garanta o horário do seu bichinho.</p>
+    <a class="btn" href="https://wa.me/5511976888191?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20%F0%9F%90%BE" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5C11.4 9 11 8 10.8 7.6c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.2L2 22l4.9-1.3c1.5.8 3.3 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.5.9.9-3.4-.2-.3C3.5 14.6 3 13.3 3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9z"/></svg>
+      <span>Chamar no WhatsApp</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 Augusta Pet Shop · Rua Augusta, 436, São Paulo</span>
+    <a href="https://wa.me/5511976888191" target="_blank" rel="noopener">wa.me/5511976888191</a>
+  </div>
+</footer>
+
+</body>
+</html>
